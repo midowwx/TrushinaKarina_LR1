@@ -1,0 +1,64 @@
+<Application x:Class="Calculator.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Calculator"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Color x:Key="MainBackgroundColor">#3b3b3b</Color>
+        <Color x:Key="MainForegroundColor">GhostWhite</Color>
+        <SolidColorBrush x:Key="MainBackgroundBrush" Color="{StaticResource MainBackgroundColor}"></SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="DarkSlateGray"></SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonForegroundBrush" Color="GhostWhite"></SolidColorBrush>
+        <SolidColorBrush x:Key="ForegroundBrush" Color="GhostWhite"></SolidColorBrush>
+        <SolidColorBrush x:Key="OpForegroundBrush" Color="DarkOrange"></SolidColorBrush>
+        <SolidColorBrush x:Key="EqualBackgroundBrush" Color="#d2691e"></SolidColorBrush>
+        <SolidColorBrush x:Key="NeonBorderBrush" Color="Transparent"></SolidColorBrush>
+
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="{DynamicResource MainBackgroundBrush}"></Setter>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="{DynamicResource MainBackgroundBrush}"></Setter>
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="FontSize" Value="26"></Setter>
+            <Setter Property="TextAlignment" Value="Right"></Setter>
+            <Setter Property="IsReadOnly" Value="True"></Setter>
+        </Style>
+        
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}"></Setter>
+            <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundBrush}"></Setter>
+            <Setter Property="Margin" Value="2"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{DynamicResource NeonBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"></Border>
+                            <Rectangle x:Name="hoverLayer" Fill="{DynamicResource HoverOverlayBrush}" Opacity="0"></Rectangle>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="hoverLayer" Property="Opacity" Value="0.2"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="OperationButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}"></Setter>
+            <Setter Property="Foreground" Value="{DynamicResource OpForegroundBrush}"></Setter>
+        </Style>
+
+        <Style x:Key="EqualButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="{DynamicResource EqualBackgroundBrush}"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+        </Style>
+    </Application.Resources>
+</Application>
